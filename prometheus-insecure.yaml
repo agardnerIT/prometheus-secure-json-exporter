@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 5s # Set the scrape interval to every 5 seconds. Default is every 1 minute.
+
+scrape_configs:
+  - job_name: "my_custom_app"
+    metrics_path: '/probe'
+    # Equivalent to:
+    # curl http://127.0.0.1:7979/probe?target=http://127.0.0.1:8123
+    static_configs:
+      - targets: ["http://127.0.0.1:8123"] # address of the JSON endpoint. Will be used (below) as the target
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target] # set the "instance" label to the `target` value 127.0.0.1:9123
+        target_label: instance
+      - target_label: __address__ # Replace 127.0.0.1:9123 for 127.0.0.1:7979 so Prometheus scrapes the JSON exporter
+        replacement: 127.0.0.1:7979
