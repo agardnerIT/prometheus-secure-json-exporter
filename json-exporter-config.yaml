@@ -1,0 +1,15 @@
+---
+modules:
+  default:
+    metrics:
+    - name: my_first_metric
+      valuetype: gauge
+      path: '{ .my_first_metric }' # Uses JSONPath
+      help: This is my first metric transformed from JSON by the json_exporter
+    http_client_config:
+      tls_config:
+        insecure_skip_verify: false
+      basic_auth:
+        username: agardnerit
+        #password: password123
+        password_file: /tmp/mysecret.txt
