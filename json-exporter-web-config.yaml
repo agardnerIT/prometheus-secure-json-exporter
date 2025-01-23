@@ -1,0 +1,5 @@
+# Usernames and hashed passwords that have full access to the web
+# server via basic authentication. If empty, no basic authentication is
+# required. Passwords are hashed with bcrypt.
+basic_auth_users:
+  agardnerit: $2y$10$XIKTYHbrpZoesvT7w3Q0jeP5iO0c9ao0LiZY68f3jKEwCpH0vT8MK
