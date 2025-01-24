@@ -62,4 +62,25 @@ Following [the docs]([https://github.com/prometheus/exporter-toolkit/blob/master
 htpasswd -nBC 10 "" | tr -d ':\n'
 ```
 
-Take your encrypted value and place it in 
+Take your encrypted value and place it in [json-exporter-web-config.yaml](json-exporter-web-config.yaml) with this syntax:
+
+```
+basic_auth_users:
+  <USERNAME>: <BCRYPT_PASSWORD_VALUE_HERE>
+```
+
+Now start json-exporter with both the `--config.file` and `--web.config.file` parameters:
+
+```
+./json_exporter --config.file=json-exporter-config.yaml --web.config.file=json-exporter-web-config.yaml
+```
+
+Go to `http://localhost:7979/probe?target=http://localhost:8123` and you should now be prompted with a basic auth login box.
+
+## Step 4: Enable Prometheus to authenticate
+
+Up to this point, Prometheus is expecting to scrape open endpoints. We need to tell Prometheus what the username and password of the `/probe` endpoint is.
+
+See [prometheus-secure.yaml](prometheus-secure.yaml). While you _could_ use the `password` field, I HIGHLY discourage it as it's just too easy for your password to end up in Git.
+
+Rather, create ANOTHER file containing only the bcrypt hashed password and point to that file with the `password_file` field. This way, you can still commit the prometheus YAML to Git if you want and the hash is never publicly available.
