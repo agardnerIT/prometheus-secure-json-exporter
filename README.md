@@ -61,3 +61,5 @@ Following [the docs]([https://github.com/prometheus/exporter-toolkit/blob/master
 ```
 htpasswd -nBC 10 "" | tr -d ':\n'
 ```
+
+Take your encrypted value and place it in 
