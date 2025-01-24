@@ -84,3 +84,9 @@ Up to this point, Prometheus is expecting to scrape open endpoints. We need to t
 See [prometheus-secure.yaml](prometheus-secure.yaml). While you _could_ use the `password` field, I HIGHLY discourage it as it's just too easy for your password to end up in Git.
 
 Rather, create ANOTHER file containing only the bcrypt hashed password and point to that file with the `password_file` field. This way, you can still commit the prometheus YAML to Git if you want and the hash is never publicly available.
+
+Start Prometheus:
+
+```
+./prometheus --config.file=prometheus-secure.yml
+```
