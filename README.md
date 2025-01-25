@@ -3,7 +3,8 @@ Sample files for exposing and scraping json_exporter securely with Prometheus.
 
 This is the companion repo for this video:
 
-TODO
+[![Use JSON with Prometheus Securely - YouTube video](https://img.youtube.com/vi/P4VJkKdoSVU/0.jpg)](https://www.youtube.com/watch?v=P4VJkKdoSVU)
+
 
 ## Step 1: Install Requirements & Start App
 
